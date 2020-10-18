@@ -1,62 +1,50 @@
 <template>
-  <div>
-    <Nuxt />
+  <div class="layout">
+    <div class="layout__home">
+      <img class="layout__logo" src="@/assets/img/logo.png" alt="logo">
+      <h1 class="layout__title">Emilien Leroy</h1>
+      <h2 class="layout__subtitle">French Web Developer</h2>
+    </div>
+    <Nuxt class="layout__content" />
   </div>
 </template>
 
-<style>
-html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
+<style lang="scss" scoped>
+.layout {
+  &__home {
+    width: 100%;
+    height: 100vh;
+    background-color: $primary;
+    color: $white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-}
+  &__logo {
+    height: 250px;
+    width: 250px;
+    margin: 15px;
+  }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
+  &__title {
+    font-family: Brush;
+    font-weight: 100;
+    font-size: 64px;
+    line-height: 1;
+  }
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
+  &__subtitle {
+    font-family: Roboto, 'sans-serif';
+    font-weight: 100;
+    opacity: 0.5;
+  }
 
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+  &__content {
+    width: 100%;
+    height: 100vh;
+    background-color: $white;
+  }
 }
 </style>
