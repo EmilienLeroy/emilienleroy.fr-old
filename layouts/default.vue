@@ -1,5 +1,5 @@
 <template>
-  <div class="layout">
+  <div ref="layout" class="layout">
     <div class="layout__home">
       <img class="layout__logo" src="@/assets/img/logo.png" alt="logo">
       <h1 class="layout__title">Emilien Leroy</h1>
@@ -8,6 +8,21 @@
     <Nuxt class="layout__content" />
   </div>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component
+export default class Layout extends Vue {
+  public mounted() {
+    const layout: Element = this.$refs.layout as Element;
+    this.$scroll({
+      el: layout,
+      smooth: true
+    });
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .layout {
