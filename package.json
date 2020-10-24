@@ -11,6 +11,7 @@
     "lint": "npm run lint:js"
   },
   "dependencies": {
+    "@mdi/font": "^5.7.55",
     "@nuxt/typescript-runtime": "^2.0.0",
     "core-js": "^3.6.5",
     "locomotive-scroll": "^3.6.1",
