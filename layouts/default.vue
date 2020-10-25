@@ -13,7 +13,14 @@
         <div ref="particle" class="layout__particle"></div>
       </div>
       <Nuxt class="layout__content" />
-      <button class="layout__contact" @click="$modal.show('contact')">
+      <button 
+        :style="{ opacity: contactOpacity }" 
+        @click="$modal.show('contact')"
+        class="layout__contact" 
+        data-scroll 
+        data-scroll-call="toggleContact" 
+        data-scroll-repeat="true" 
+      >
         <span class="mdi mdi-email" />
         Contact
       </button>
@@ -26,6 +33,7 @@
 import { Component, Ref, Vue } from 'vue-property-decorator';
 import { tsParticles, IOptions, RecursivePartial, DestroyType } from "tsparticles";
 import ContactVue from '@/components/contact.vue';
+import { ScrollFunction } from '~/plugins/scroll.client';
 
 @Component({
   components: {
@@ -38,6 +46,16 @@ export default class Layout extends Vue {
 
   @Ref('particle')
   private particle!: HTMLElement;
+
+  private contactOpacity: number = 0;
+
+  private get onScroll(): ScrollFunction {
+    return {
+      toggleContact: () => {
+        this.contactOpacity = this.contactOpacity === 0 ? 1 : 0;
+      }
+    }
+  }
 
   private particleConfig: RecursivePartial<IOptions> = {
     "detectRetina": true,
@@ -170,10 +188,7 @@ export default class Layout extends Vue {
 
   public mounted() {
     this.$particle.set('home', this.particle, this.particleConfig);
-    this.$scroll({
-      el: this.layout,
-      smooth: true
-    });
+    this.$scroll({ el: this.layout, smooth: true }, this.onScroll);
   }
 }
 </script>
@@ -280,6 +295,7 @@ export default class Layout extends Vue {
     font-size: 24px;
     text-transform: uppercase;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    transition: all 1s ease;
   }
 
   @keyframes slide-bottom {
