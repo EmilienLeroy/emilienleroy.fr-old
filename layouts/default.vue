@@ -1,27 +1,37 @@
 <template>
-  <div ref="layout" class="layout">
-    <div class="layout__home">
-      <img class="layout__logo" src="@/assets/img/logo.png" alt="logo">
-      <h1 class="layout__title">Emilien Leroy</h1>
-      <h2 class="layout__subtitle">French Web Developer</h2>
-      <p class="layout__scroll">
-        Scroll Down
-        <span class="mdi mdi-chevron-down"></span>
-      </p>
-      <div class="layout__footer" />
-      <div ref="particle" class="layout__particle"></div>
+  <div>
+    <div ref="layout" class="layout">
+      <div class="layout__home">
+        <img class="layout__logo" src="@/assets/img/logo.png" alt="logo">
+        <h1 class="layout__title">Emilien Leroy</h1>
+        <h2 class="layout__subtitle">French Web Developer</h2>
+        <p class="layout__scroll">
+          Scroll Down
+          <span class="mdi mdi-chevron-down" />
+        </p>
+        <div class="layout__footer" />
+        <div ref="particle" class="layout__particle"></div>
+      </div>
+      <Nuxt class="layout__content" />
+      <button class="layout__contact" @click="$modal.show('contact')">
+        <span class="mdi mdi-email" />
+        Contact
+      </button>
     </div>
-    <Nuxt class="layout__content" />
+    <contact-vue />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Ref, Vue } from 'vue-property-decorator';
 import { tsParticles, IOptions, RecursivePartial, DestroyType } from "tsparticles";
+import ContactVue from '@/components/contact.vue';
 
-
-
-@Component
+@Component({
+  components: {
+    ContactVue,
+  },
+})
 export default class Layout extends Vue {
   @Ref('layout')
   private layout!: HTMLElement;
@@ -170,6 +180,8 @@ export default class Layout extends Vue {
 
 <style lang="scss" scoped>
 .layout {
+  position: relative;
+
   &__home {
     width: 100%;
     height: 100vh;
@@ -251,6 +263,23 @@ export default class Layout extends Vue {
     left: 0;
     height: 100vh;
     width: 100%;
+  }
+
+  &__contact {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: $primary;
+    color: $white;
+    border: none;
+    border-radius: 10px;
+    margin: 25px;
+    padding: 7px 10px;
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 24px;
+    text-transform: uppercase;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   }
 
   @keyframes slide-bottom {
