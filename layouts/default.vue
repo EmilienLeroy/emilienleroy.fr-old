@@ -235,6 +235,8 @@ export default class Layout extends Vue {
     width: 100%;
     height: 100vh;
     background-color: $white;
+    position: relative;
+    z-index: 10;
   }
 
   &__footer {
@@ -296,6 +298,7 @@ export default class Layout extends Vue {
     text-transform: uppercase;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     transition: all 1s ease;
+    z-index: 20;
   }
 
   @keyframes slide-bottom {
