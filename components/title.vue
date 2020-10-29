@@ -11,16 +11,105 @@
       <div class="triangle__mask triangle__mask--left" />
       <div class="triangle__mask triangle__mask--right" />
     </div>
+    <div ref="particle" class="title__particle"></div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { IOptions, RecursivePartial } from 'tsparticles';
+import { Component, Prop, Ref, Vue } from 'vue-property-decorator';
 
 @Component
 export default class TitleVue extends Vue {
+  @Ref('particle')
+  private particle!: HTMLElement;
+
   @Prop()
   private readonly title!: string;
+
+  public mounted() {
+    this.$particle.set('title', this.particle, this.particleConfig);
+  }
+
+  private particleConfig: RecursivePartial<IOptions> = {
+    "detectRetina": true,
+    "fpsLimit": 60,
+    "particles": {
+      "color": {
+        "value": "#323E4F",
+      },
+      "move": {
+        "angle": 90,
+        "attract": {
+          "enable": true,
+          "rotate": {
+            "x": 600,
+            "y": 1200
+          }
+        },
+        "direction": "none",
+        "enable": true,
+        "outMode": "destroy",
+        "random": false,
+        "speed": 1,
+      },
+      "number": {
+        "density": {
+          "enable": false,
+          "area": 800,
+          "factor": 1000
+        },
+        "limit": 0,
+        "value": 0
+      },
+      "opacity": {
+        "animation": {
+          "enable": false,
+          "minimumValue": 0.1,
+          "speed": 1,
+          "sync": false
+        },
+        "random": {
+          "enable": true,
+          "minimumValue": 0.1
+        },
+        "value": 0.7
+      },
+      "size": {
+        "animation": {
+          "destroy": "min",
+          "enable": true,
+          "minimumValue": 0,
+          "speed": 8,
+          "startValue": "max",
+          "sync": true
+        },
+        "random": {
+          "enable": true,
+          "minimumValue": 1
+        },
+        "value": 5
+      },
+    },
+    "pauseOnBlur": true,
+    "emitters": {
+      "direction": "top",
+      "life": {},
+      "rate": {
+        "quantity": 2,
+        "delay": 0.3
+      },
+      "size": {
+        "mode": "percent",
+        "height": 0,
+        "width": 100
+      },
+      "position": {
+        "x": 50,
+        "y": 100
+      }
+    }
+  }
 }
 </script>
 
@@ -37,6 +126,14 @@ export default class TitleVue extends Vue {
   border-radius: 20px;
   box-shadow: 0px 9px 0px 0px $primary;
   font-weight: lighter;
+
+  &__particle{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
 
   &__triangle{
     position: absolute;
