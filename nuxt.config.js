@@ -40,7 +40,8 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    'nuxt-i18n',
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
@@ -50,4 +51,18 @@ export default {
   styleResources: {
     scss: ['./assets/styles/*.scss']
   },
+
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
+    vueI18n: {
+      fallbackLocale: 'en',
+      messages: {
+        en: {
+          title: 'French Web Developer',
+          scroll: 'Scroll Down',
+        },
+      }
+    }
+  }
 }

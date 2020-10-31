@@ -74,6 +74,9 @@ export default class Home extends Vue {}
   &__text {
     font-family: Roboto;
     margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     &--1 {
       grid-area: 2 / 1 / 3 / 2; 

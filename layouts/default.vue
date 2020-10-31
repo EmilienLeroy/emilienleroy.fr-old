@@ -4,9 +4,9 @@
       <div class="layout__home">
         <img class="layout__logo" src="@/assets/img/logo.png" alt="logo">
         <h1 class="layout__title">Emilien Leroy</h1>
-        <h2 class="layout__subtitle">{ French Web Developer }</h2>
+        <h2 class="layout__subtitle">{ {{ $t('title') }} }</h2>
         <p class="layout__scroll">
-          Scroll Down
+          {{ $t('scroll') }}
           <span class="mdi mdi-chevron-down" />
         </p>
         <div class="layout__footer" />
