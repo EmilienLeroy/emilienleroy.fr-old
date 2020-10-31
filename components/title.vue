@@ -123,6 +123,7 @@ export default class TitleVue extends Vue {
   width: fit-content;
   font-size: 32px;
   padding: 10px 30px;
+  margin-bottom: 30px;
   border-radius: 20px;
   box-shadow: 0px 9px 0px 0px $primary;
   font-weight: lighter;
