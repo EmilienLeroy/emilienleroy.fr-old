@@ -2,14 +2,8 @@
   <div class="home">
     <title-vue class="home__title" title="About me" />
     <div class="home__text home__text--1">
-      <h3>It since 2014</h3>
-      <p>
-        Passionate since childhood by new technologies and computing, I decided
-        to dedicate my studies to this area. In the past few years, I have
-        acquired skills as a developer and network administrator. Thanks to the
-        sandwich course I currently take part in, I have the opportunity to get
-        familiar with the world of companies while continuing my studies.
-      </p>
+      <h3>{{ $t('home.it.title') }}</h3>
+      <p>{{ $t('home.it.content') }}</p>
     </div>
     <img-vue
       class="home__img"
@@ -20,24 +14,12 @@
     />
 
     <div class="home__text home__text--2 home__text--right">
-      <h3>It since 2014</h3>
-      <p>
-        Passionate since childhood by new technologies and computing, I decided
-        to dedicate my studies to this area. In the past few years, I have
-        acquired skills as a developer and network administrator. Thanks to the
-        sandwich course I currently take part in, I have the opportunity to get
-        familiar with the world of companies while continuing my studies.
-      </p>
+      <h3>{{ $t('home.passion.title') }}</h3>
+      <p>{{ $t('home.passion.content') }}</p>
     </div>
     <div class="home__text home__text--3">
-      <h3>It since 2014</h3>
-      <p>
-        Passionate since childhood by new technologies and computing, I decided
-        to dedicate my studies to this area. In the past few years, I have
-        acquired skills as a developer and network administrator. Thanks to the
-        sandwich course I currently take part in, I have the opportunity to get
-        familiar with the world of companies while continuing my studies.
-      </p>
+      <h3>{{ $t('home.other.title') }}</h3>
+      <p>{{ $t('home.other.content') }}</p>
     </div>
   </div>
 </template>
