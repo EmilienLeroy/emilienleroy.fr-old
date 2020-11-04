@@ -1,26 +1,30 @@
 <template>
-  <div class="home">
-    <title-vue class="home__title" title="About me" />
-    <div class="home__text home__text--1">
-      <h3>{{ $t('home.it.title') }}</h3>
-      <p>{{ $t('home.it.content') }}</p>
+  <div class="nav">
+      <nav-vue direction="left" to="/" />
+      <nav-vue direction="right" to="/" />
+    <div class="home">
+      <title-vue class="home__title" title="About me" />
+      <div class="home__text home__text--1">
+        <h3>{{ $t('home.it.title') }}</h3>
+        <p>{{ $t('home.it.content') }}</p>
+      </div>
+      <img-vue
+        class="home__img"
+        width="300px"
+        height="300px"
+        caption="It's me"
+        :src="require('@/assets/img/moi.jpg')"
+      />
+      <div class="home__text home__text--2 home__text--right">
+        <h3>{{ $t('home.passion.title') }}</h3>
+        <p>{{ $t('home.passion.content') }}</p>
+      </div>
+      <div class="home__text home__text--3">
+        <h3>{{ $t('home.other.title') }}</h3>
+        <p>{{ $t('home.other.content') }}</p>
+      </div>
     </div>
-    <img-vue
-      class="home__img"
-      width="300px"
-      height="300px"
-      caption="It's me"
-      :src="require('@/assets/img/moi.jpg')"
-    />
 
-    <div class="home__text home__text--2 home__text--right">
-      <h3>{{ $t('home.passion.title') }}</h3>
-      <p>{{ $t('home.passion.content') }}</p>
-    </div>
-    <div class="home__text home__text--3">
-      <h3>{{ $t('home.other.title') }}</h3>
-      <p>{{ $t('home.other.content') }}</p>
-    </div>
   </div>
 </template>
 
@@ -28,11 +32,13 @@
 import { Component, Vue } from "vue-property-decorator";
 import TitleVue from "@/components/title.vue";
 import ImgVue from "@/components/img.vue";
+import NavVue from '@/components/nav.vue';
 
 @Component({
   components: {
     TitleVue,
     ImgVue,
+    NavVue,
   },
 })
 export default class Home extends Vue {}
