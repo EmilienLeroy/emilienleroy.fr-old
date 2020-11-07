@@ -1,20 +1,7 @@
 <template>
   <div @mouseover="isHover = true" @mouseleave="isHover = false">
     <NuxtLink :to="to" :class="`nav nav--${direction}`">
-      <div class="nav__title">
-        <span
-          v-for="(letter, index) in letters" 
-          :key="index" 
-          :style="{
-            transition: 'all 0.3s ease',
-            opacity: isHover ? 1 : 0,
-            transform: isHover ? 'translateY(0px)' : 'translateY(10px)',
-            transitionDelay: `${index / 35}s`
-          }" 
-        >
-          {{ letter }}
-        </span>
-      </div>
+      <letters-vue class="nav__title" :text="title" :show="isHover" />
       <div :class="`nav__background ${isHover ? 'nav__background--hover' : ''} `" />
       <div :class="`nav__button mdi mdi-chevron-${direction} ${isHover ? 'nav__button--hover' : ''}`" />
     </NuxtLink>
@@ -23,8 +10,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import LettersVue from './letters.vue';
 
-@Component
+@Component({
+  components: {
+    LettersVue,
+  },
+})
 export default class NavVue extends Vue {
   private isHover: boolean = false;
 
@@ -36,10 +28,6 @@ export default class NavVue extends Vue {
 
   @Prop()
   private readonly title!: string;
-
-  private get letters() {
-    return this.title.split('');
-  }
 }
 </script>
 
