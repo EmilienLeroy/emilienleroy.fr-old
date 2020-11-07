@@ -1,7 +1,6 @@
 <template>
   <div class="nav">
-      <nav-vue direction="left" to="/" />
-      <nav-vue direction="right" to="/" />
+    <nav-vue direction="right" title="experienxe" to="/" />
     <div class="home">
       <title-vue class="home__title" title="About me" />
       <div class="home__text home__text--1">
@@ -46,13 +45,15 @@ export default class Home extends Vue {}
 
 <style lang="scss" scoped>
 .home {
-  padding: 20px 40px;
+  padding: 20px 145px;
   max-width: 1400px;
   margin: auto;
   display: grid;
   grid-template-columns: 1.3fr auto;
   grid-template-rows: auto 1fr 1fr 1fr;
+  grid-gap: 10px 0px;
   gap: 10px 0px;
+  height: 100vh;
 
   &__content {
     display: flex;
