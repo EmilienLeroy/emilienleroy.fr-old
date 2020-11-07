@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="layout" class="layout">
+    <div v-scroll="'layout'" ref="layout" class="layout">
       <div class="layout__home">
         <img class="layout__logo" src="@/assets/img/logo.png" alt="logo">
         <h1 class="layout__title">Emilien Leroy</h1>
@@ -17,8 +17,7 @@
         :style="{ opacity: contactOpacity }" 
         @click="$modal.show('contact')"
         class="layout__contact" 
-        data-scroll 
-        data-scroll-call="toggleContact" 
+        v-scroll:layout='toggleContact'
         data-scroll-repeat="true" 
       >
         <span class="mdi mdi-email" />
@@ -49,12 +48,12 @@ export default class Layout extends Vue {
 
   private contactOpacity: number = 0;
 
-  private get onScroll(): ScrollFunction {
-    return {
-      toggleContact: () => {
-        this.contactOpacity = this.contactOpacity === 0 ? 1 : 0;
-      }
-    }
+  public mounted() {
+    this.$particle.set('home', this.particle, this.particleConfig);
+  }
+
+  public toggleContact() {
+    this.contactOpacity = this.contactOpacity === 0 ? 1 : 0
   }
 
   private particleConfig: RecursivePartial<IOptions> = {
@@ -184,11 +183,6 @@ export default class Layout extends Vue {
         "y": 100
       }
     }
-  }
-
-  public mounted() {
-    this.$particle.set('home', this.particle, this.particleConfig);
-    this.$scroll({ el: this.layout, smooth: true }, this.onScroll);
   }
 }
 </script>

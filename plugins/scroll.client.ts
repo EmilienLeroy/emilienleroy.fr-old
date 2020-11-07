@@ -1,21 +1,33 @@
 import vue from "vue";
 import scroll from "locomotive-scroll";
-import { Scroll } from '@/types/scroll';
 import 'locomotive-scroll/dist/locomotive-scroll.css';
 
+const scrollInstances: { [key: string]: scroll } = {}
+
 interface ScrollFunction {
-  [key: string]: (...params: any) => void
+  [key: string]: any
 }
 
-vue.prototype.$scroll = (params: any, scrollFunction: ScrollFunction) => {
-  const scrollInstance = new scroll(params);
+vue.directive('scroll', {
+  bind(el, binding, vnode) {
+    if(binding.arg) {
+      el.setAttribute('data-scroll', '');
+      el.setAttribute('data-scroll-call', binding.expression);
+    }
 
-  if (scrollFunction) {
-    scrollInstance.on('call', (caller: [string] | string) => bindScrollFunction(scrollFunction, caller));
+    if(!binding.arg) {
+      scrollInstances[binding.value] = new scroll({ el, smooth: true });
+    }
+  },
+  inserted(el, binding, vnode) {
+    if(binding.arg) {
+      const scrollInstance = scrollInstances[binding.arg];
+      if (scrollInstance && vnode.context) {
+        scrollInstance.on('call', (caller: [string] | string) => bindScrollFunction(vnode.context!, caller))
+      }
+    }
   }
-
-  return scrollInstance;
-};
+})
 
 function bindScrollFunction(scrollFunction: ScrollFunction, caller: [string] | string) {
   if(Array.isArray(caller)) {
@@ -25,12 +37,6 @@ function bindScrollFunction(scrollFunction: ScrollFunction, caller: [string] | s
   }
 
   scrollFunction[caller]();
-}
-
-declare module 'vue/types/vue' {
-  interface Vue {
-    $scroll: (params?: any, bindingFunction?: ScrollFunction) => Scroll;
-  }
 }
 
 export {
