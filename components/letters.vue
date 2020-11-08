@@ -1,18 +1,17 @@
 <template>
-  <div>
+  <component :is='tag' class="letters">
 		<span
       v-for="(letter, index) in letters" 
       :key="index" 
+      v-html="letter"
       :style="{
-        transition: 'all 0.3s ease',
+        transition: `all ${speed}s ease`,
         opacity: show ? 1 : 0,
         transform: show ? 'translateY(0px)' : 'translateY(10px)',
-        transitionDelay: `${index / 35}s`
+        transitionDelay: `${delay + (index / 35)}s`
       }" 
-    >
-      {{ letter }}
-    </span>
-	</div>
+    />
+	</component>
 </template>
 
 <script lang="ts">
@@ -24,10 +23,30 @@ export default class LettersVue extends Vue {
 	private readonly text!: string;
 
 	@Prop({ default: false })
-	private readonly show?: boolean;
+  private readonly show?: boolean;
+  
+  @Prop({ default: 'div' })
+  private readonly tag!: string;
+
+  @Prop({ default: 0.3 })
+  private readonly speed!: number;
+
+  @Prop({ default: 0 })
+  private readonly delay!: number;
 
 	private get letters() {
-		return this.text.split('');
+    let letters: string[] = [];
+    this.text.split(' ').forEach(t => {
+      letters = [...letters, ...t.split(''), '&nbsp;'];
+    });
+		return letters;
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+.letters {
+  display: flex;
+  flex-wrap: wrap;
+}
+</style>

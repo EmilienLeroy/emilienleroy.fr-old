@@ -2,28 +2,31 @@
   <div class="nav">
     <nav-vue direction="right" title="experienxe" to="/" />
     <div class="home">
-      <title-vue class="home__title" title="About me" />
-      <div class="home__text home__text--1">
-        <h3>{{ $t('home.it.title') }}</h3>
-        <p>{{ $t('home.it.content') }}</p>
-      </div>
-      <img-vue
-        class="home__img"
-        width="300px"
-        height="300px"
-        caption="It's me"
-        :src="require('@/assets/img/moi.jpg')"
+      <title-vue v-scroll:layout="showHome" class="home__title" title="About me" />
+      <paragraph-vue 
+        :show="display"
+        class="home__text home__text--1" 
+        title="home.it.title" 
+        content="home.it.content" 
       />
-      <div class="home__text home__text--2 home__text--right">
-        <h3>{{ $t('home.passion.title') }}</h3>
-        <p>{{ $t('home.passion.content') }}</p>
+      <div class="home__img">
+        <img-vue width="250px" height="250px" caption="It's me" :src="require('@/assets/img/moi.jpg')" />
       </div>
-      <div class="home__text home__text--3">
-        <h3>{{ $t('home.other.title') }}</h3>
-        <p>{{ $t('home.other.content') }}</p>
-      </div>
+      <paragraph-vue 
+        :show="display"
+        :delay="0.3"
+        class="home__text home__text--2 home__text--right" 
+        title="home.passion.title" 
+        content="home.passion.content" 
+      />
+      <paragraph-vue 
+        :show="display"
+        :delay="0.6"
+        class="home__text home__text--3" 
+        title="home.other.title" 
+        content="home.other.content" 
+      />
     </div>
-
   </div>
 </template>
 
@@ -32,18 +35,26 @@ import { Component, Vue } from "vue-property-decorator";
 import TitleVue from "@/components/title.vue";
 import ImgVue from "@/components/img.vue";
 import NavVue from '@/components/nav.vue';
+import ParagraphVue from '@/components/paragraph.vue';
 
 @Component({
   components: {
     TitleVue,
     ImgVue,
     NavVue,
+    ParagraphVue,
   },
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  private display = false;
+
+  public showHome() {
+    this.display = true;
+  }
+}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .home {
   padding: 20px 145px;
   max-width: 1400px;
@@ -114,6 +125,7 @@ export default class Home extends Vue {}
     margin: 25px 20px 0px 40px;
     grid-area: 1 / 2 / 3 / 3;
     display: flex;
+    align-items: flex-end;
   }
 }
 </style>
