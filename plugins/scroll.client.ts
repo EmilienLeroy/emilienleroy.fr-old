@@ -2,35 +2,45 @@ import vue from "vue";
 import scroll from "locomotive-scroll";
 import 'locomotive-scroll/dist/locomotive-scroll.css';
 
-const scrollInstances: { [key: string]: scroll } = {}
-
 interface ScrollFunction {
-  [key: string]: any
+  [key: string]: (arg?: string) => void;
 }
 
+interface ScrollInstances {
+  [key: string]: scroll
+}
+
+interface ScrollListeners {
+  [key: string]: ScrollFunction;
+}
+
+const scrollInstances: ScrollInstances = {};
+const scrollListeners: ScrollListeners = {};
+
 vue.directive('scroll', {
-  bind(el, binding, vnode) {
-    if(binding.arg) {
+  bind(el, binding) {
+    if (binding.arg) {
       el.setAttribute('data-scroll', '');
       el.setAttribute('data-scroll-call', binding.expression);
     }
 
     if(!binding.arg) {
       scrollInstances[binding.value] = new scroll({ el, smooth: true });
+      scrollListeners[binding.value] = {};
+      scrollInstances[binding.value].on('call', (caller) => {
+        bindScrollFunction(scrollListeners[binding.value], caller);
+      })
     }
   },
-  inserted(el, binding, vnode) {
-    if(binding.arg) {
-      const scrollInstance = scrollInstances[binding.arg];
-      if (scrollInstance && vnode.context) {
-        scrollInstance.on('call', (caller: [string] | string) => bindScrollFunction(vnode.context!, caller))
-      }
+  inserted(el, binding) {
+    if (binding.arg && scrollInstances[binding.arg] && binding.value) {
+      scrollListeners[binding.arg][binding.expression] = binding.value;
     }
   }
 })
 
 function bindScrollFunction(scrollFunction: ScrollFunction, caller: [string] | string) {
-  if(Array.isArray(caller)) {
+  if (Array.isArray(caller)) {
     const name = caller[0];
     caller.splice(0,1);
     return scrollFunction[name](...caller);

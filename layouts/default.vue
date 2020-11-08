@@ -15,9 +15,9 @@
       <Nuxt class="layout__content" />
       <button 
         :style="{ opacity: contactOpacity }" 
+        v-scroll:layout='toggleContact'
         @click="$modal.show('contact')"
         class="layout__contact" 
-        v-scroll:layout='toggleContact'
         data-scroll-repeat="true" 
       >
         <span class="mdi mdi-email" />
