@@ -58,12 +58,13 @@ $transition: all 0.5s cubic-bezier(.08,.71,.38,.97);
   }
 
   &__title {
+    display: flex;
     position: absolute;
+    justify-content: center;
     top: -33px;
     opacity: 1;
     width: 115px;
     left: -30px;
-    text-align: center;
     font-family: Roboto;
     text-transform: uppercase;
     font-weight: 500;
