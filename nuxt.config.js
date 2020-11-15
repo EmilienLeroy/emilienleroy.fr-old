@@ -62,6 +62,7 @@ export default {
           title: 'French Web Developer',
           scroll: 'Scroll Down',
           home: {
+            title: 'About me',
             it: {
               title: 'IT since 2014',
               content: 'Passionate since childhood by new technologies and computing, I decided to dedicate my studies to this area. In the past few years, I have acquired skills as a developer and network administrator. Thanks to the sandwich course I currently take part in, I have the opportunity to get familiar with the world of companies while continuing my studies.',
@@ -74,7 +75,10 @@ export default {
               title: 'My other passions',
               content: 'One of my other passions is video editing, and particularly special effects. I spent many hours on After Effect (and its tutorials). After over 5 years of use, I think I am able to make very good quality videos with this software application. I also work out to stay fit (your keyboard is good for muscling the fingers but do not forget the rest).'
             }
-          }
+          },
+          experience: {
+            title: 'Experience',
+          },
         },
       }
     }

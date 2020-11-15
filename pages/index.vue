@@ -1,10 +1,10 @@
 <template>
   <div class="nav">
-    <nav-vue direction="right" title="experienxe" to="/" />
+    <nav-vue direction="right" :title="$t('experience.title')" to="/experience" />
     <div class="home">
-      <title-vue v-scroll:layout="showHome" class="home__title" title="About me" />
+      <title-vue v-scroll:layout="showHome" class="home__title" :title="$t('home.title')" />
       <paragraph-vue 
-        :show="display"
+        :show="home"
         class="home__text home__text--1" 
         title="home.it.title" 
         content="home.it.content" 
@@ -13,14 +13,14 @@
         <img-vue width="250px" height="250px" caption="It's me" :src="require('@/assets/img/moi.jpg')" />
       </div>
       <paragraph-vue 
-        :show="display"
+        :show="home"
         :delay="0.3"
         class="home__text home__text--2 home__text--right" 
         title="home.passion.title" 
         content="home.passion.content" 
       />
       <paragraph-vue 
-        :show="display"
+        :show="home"
         :delay="0.6"
         class="home__text home__text--3" 
         title="home.other.title" 
@@ -31,11 +31,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import TitleVue from "@/components/title.vue";
 import ImgVue from "@/components/img.vue";
 import NavVue from '@/components/nav.vue';
 import ParagraphVue from '@/components/paragraph.vue';
+import { namespace, State } from 'vuex-class';
+
+const viewModule = namespace('view');
 
 @Component({
   components: {
@@ -46,10 +49,14 @@ import ParagraphVue from '@/components/paragraph.vue';
   },
 })
 export default class Home extends Vue {
-  private display = false;
+  @viewModule.State('home')
+  private home!: boolean;
+
+  @viewModule.Mutation('setHome')
+  private setHome!: (home: boolean) => void;
 
   public showHome() {
-    this.display = true;
+    this.setHome(true);
   }
 }
 </script>

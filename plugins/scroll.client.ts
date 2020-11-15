@@ -36,7 +36,7 @@ vue.directive('scroll', {
     if (binding.arg && scrollInstances[binding.arg] && binding.value) {
       scrollListeners[binding.arg][binding.expression] = binding.value;
     }
-  }
+  },
 })
 
 function bindScrollFunction(scrollFunction: ScrollFunction, caller: [string] | string) {

@@ -25,7 +25,6 @@ export default class ImgVue extends Vue {
 
   @Prop()
   private readonly caption?: string;
-
 }
 </script>
 
