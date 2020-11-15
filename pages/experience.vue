@@ -13,12 +13,21 @@ import TitleVue from '@/components/title.vue';
 import NavVue from '@/components/nav.vue';
 
 @Component({
+  transition: {
+    name:'fade',
+    mode: 'out-in',
+  },
   components: {
     TitleVue,
     NavVue,
   }
 })
-export default class ExpericenceVue extends Vue {} 
+export default class ExpericenceVue extends Vue {
+  private transition: any = {
+    name:'fade',
+    mode: 'in-out',
+  };
+} 
 </script>
 
 <style lang="scss" scoped>

@@ -41,6 +41,10 @@ import { namespace, State } from 'vuex-class';
 const viewModule = namespace('view');
 
 @Component({
+  transition: {
+    name:'fade',
+    mode: 'out-in',
+  },
   components: {
     TitleVue,
     ImgVue,
@@ -49,6 +53,7 @@ const viewModule = namespace('view');
   },
 })
 export default class Home extends Vue {
+
   @viewModule.State('home')
   private home!: boolean;
 
