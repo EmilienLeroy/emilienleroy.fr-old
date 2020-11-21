@@ -4,14 +4,14 @@
     <div class="experience">
       <title-vue title="Experience" />
       <div class="experience__body">
-        <timeline-vue :items="['2010', '2011', '2012']" />
+        <timeline-vue :item.sync="index" :items="items" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import TitleVue from '@/components/title.vue';
 import NavVue from '@/components/nav.vue';
 import TimelineVue from '@/components/timeline.vue';
@@ -28,10 +28,8 @@ import TimelineVue from '@/components/timeline.vue';
   }
 })
 export default class ExpericenceVue extends Vue {
-  private transition: any = {
-    name:'fade',
-    mode: 'in-out',
-  };
+  private index: number = 0;
+  private items: string[] = ['2014', '2015', '2016', '2017', '2018', '2019', '2020'];
 } 
 </script>
 

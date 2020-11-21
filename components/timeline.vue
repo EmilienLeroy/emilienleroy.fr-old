@@ -1,28 +1,38 @@
 <template>
   <div class="timeline">
     <template v-for="(item, index) in items">
-      <div class="timeline__item" :key="index">
+      <div 
+        class="timeline__item"
+        :class="{'timeline__item--disable': itemSync < index  }" 
+        :key="index" 
+        @click="itemSync = index"
+      >
         <p class="timeline__text">{{ item }}</p>
         <div class="timeline__round" />
       </div>
-      <div class="timeline__line" :key="`line-${index}`" v-if="index !== items.length - 1">
+      <div 
+        v-if="index !== items.length - 1"
+        class="timeline__line" 
+        :class="{'timeline__line--disable': itemSync <= index  }"
+        :key="`line-${index}`" 
+      >
         <div class="line" />
       </div>
     </template>
-    
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, PropSync, Vue } from 'vue-property-decorator';
+import { Component, Prop, PropSync, Vue, Watch } from 'vue-property-decorator';
 
 @Component
 export default class TimelineVue extends Vue {
-  @PropSync('item')
-  private itemSync!: string;
+  @PropSync('item', { default: 0 })
+  private itemSync!: number;
 
   @Prop({ default: () => [] })
   private readonly items!: string[];
+
 }
 </script>
 
@@ -31,11 +41,17 @@ export default class TimelineVue extends Vue {
   display: flex;
   width: 100%;
   justify-content: space-between;
-
+  
   &__item {
     position: relative;
     display: flex;
     justify-content: center;
+    transition: all 1s ease;
+    cursor: pointer;
+
+    &--disable {
+      opacity: 0.5;
+    }
   }
 
   &__text {
@@ -60,6 +76,11 @@ export default class TimelineVue extends Vue {
   &__line {
     width: 100%;
     position: relative;
+    transition: all 1s ease;
+
+    &--disable {
+      opacity: 0.5;
+    }
 
     .line {
       position: relative;
