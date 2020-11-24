@@ -78,6 +78,34 @@ export default {
           },
           experience: {
             title: 'Experience',
+            2014: {
+              title: 'Baccalaureat STI2D SIN',
+              content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident corporis veniam nisi esse, molestias quibusdam eos itaque officiis nesciunt laborum, nostrum modi quod repellendus cupiditate, odit alias ex nulla laboriosam?'
+            },
+            2015: {
+              title: 'Welcom in 2015',
+              content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident corporis veniam nisi esse, molestias quibusdam eos itaque officiis nesciunt laborum, nostrum modi quod repellendus cupiditate, odit alias ex nulla laboriosam?'
+            },
+            2016: {
+              title: 'Welcom in 2016',
+              content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident corporis veniam nisi esse, molestias quibusdam eos itaque officiis nesciunt laborum, nostrum modi quod repellendus cupiditate, odit alias ex nulla laboriosam?'
+            },
+            2017: {
+              title: 'Baccalaureat STI2D SIN',
+              content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident corporis veniam nisi esse, molestias quibusdam eos itaque officiis nesciunt laborum, nostrum modi quod repellendus cupiditate, odit alias ex nulla laboriosam?'
+            },
+            2018: {
+              title: 'Baccalaureat STI2D SIN',
+              content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident corporis veniam nisi esse, molestias quibusdam eos itaque officiis nesciunt laborum, nostrum modi quod repellendus cupiditate, odit alias ex nulla laboriosam?'
+            },
+            2019: {
+              title: 'Baccalaureat STI2D SIN',
+              content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident corporis veniam nisi esse, molestias quibusdam eos itaque officiis nesciunt laborum, nostrum modi quod repellendus cupiditate, odit alias ex nulla laboriosam?'
+            },
+            2020: {
+              title: 'Baccalaureat STI2D SIN',
+              content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident corporis veniam nisi esse, molestias quibusdam eos itaque officiis nesciunt laborum, nostrum modi quod repellendus cupiditate, odit alias ex nulla laboriosam?'
+            }
           },
         },
       }

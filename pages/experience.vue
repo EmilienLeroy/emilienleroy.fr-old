@@ -6,11 +6,11 @@
       <title-vue title="Experience" />
       <div class="experience__body">
         <div class="experience__content">
-          <h2 class="experience__title">2014</h2>
-          <h3 class="experience__subtitle">Baccalaureat STI2D SIN</h3>
-          <p class="experience__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident corporis veniam nisi esse, molestias quibusdam eos itaque officiis nesciunt laborum, nostrum modi quod repellendus cupiditate, odit alias ex nulla laboriosam?</p>
+          <h2 class="experience__title">{{ item }}</h2>
+          <h3 class="experience__subtitle">{{ $t(`experience.${item}.title`) }}</h3>
+          <p class="experience__text">{{ $t(`experience.${item}.content`) }}</p>
         </div>
-        <timeline-vue :item.sync="index" :items="items" />
+        <timeline-vue :index.sync="index" :items="items" />
       </div>
     </div>
   </div>
@@ -35,7 +35,11 @@ import TimelineVue from '@/components/timeline.vue';
 })
 export default class ExpericenceVue extends Vue {
   private index: number = 0;
-  private items: string[] = ['2014', '2015', '2016', '2017', '2018', '2019', '2020'];
+  private items: number[] = [2014, 2015, 2016, 2017, 2018 , 2019 , 2020];
+
+  private get item() {
+    return this.items[this.index] ? this.items[this.index] : {};
+  }
 } 
 </script>
 
